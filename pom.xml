@@ -11,7 +11,7 @@
 	<groupId>mg.valian.tsiaro</groupId>
 	<artifactId>Spring-Boot-Demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>Spring-Boot-Demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
