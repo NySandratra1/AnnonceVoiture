@@ -16,6 +16,4 @@ public class Categorie {
 
     @Column
     private String nomCategorie;
-
-
 }
