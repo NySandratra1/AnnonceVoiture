@@ -3,12 +3,18 @@ package mg.valian.tsiaro.springbootdemo.data.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Utilisateur {
+public class Utilisateur implements UserDetails{
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,6 +34,41 @@ public class Utilisateur {
         this.setMotDePasse(motDePasse);
         this.setMail(mail);
         this.setDateDeNaissance(dateDeNaissance);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public String getPassword() {
+        return motDePasse;
+    }
+
+    @Override
+    public String getUsername() {
+        return mail;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
 }

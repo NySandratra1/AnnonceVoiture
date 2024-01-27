@@ -13,6 +13,7 @@ public class AnnonceFavService {
 
     @Autowired
     AnnonceFavRepository annonceFavRepository;
+    
     public List<AnnonceFav> getAllAnnonceFav() {
         return annonceFavRepository.findAll();
     }

@@ -12,13 +12,19 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    UserRepository userRepository ;
 
     public List<Utilisateur> getAllUser() {
         return userRepository.findAll();
     }
     public Optional<Utilisateur> getOneUser(int id) {
         return userRepository.findById(id);
+    }
+
+    public Utilisateur getOneUserByMail(String mail) throws Exception{
+        Utilisateur u = userRepository.findFirstByMail(mail);
+        if(u==null) throw new Exception("mail non existant");
+        return u;
     }
 
     public void insertUser(Utilisateur us) {
