@@ -3,6 +3,7 @@ package mg.valian.tsiaro.springbootdemo.controller.login;
 
 import mg.valian.tsiaro.springbootdemo.data.entity.Annonce;
 import mg.valian.tsiaro.springbootdemo.data.entity.Voiture;
+import mg.valian.tsiaro.springbootdemo.data.request.AnnonceRequest;
 import mg.valian.tsiaro.springbootdemo.data.request.VoitureRequest;
 import mg.valian.tsiaro.springbootdemo.service.AnnonceService;
 
@@ -37,9 +38,17 @@ public class InsertAnnonce {
         annonceService.insertAnnonce(v);
     }
 
-    @GetMapping("annonce")
+    @GetMapping("/annonce")
     public List<Annonce> getAnnonceUser() {
         return annonceService.getListeAnnoncesUser();
     }
+    
+    @PutMapping("/annonce")
+    public void updateEtatAnnonce(@RequestBody AnnonceRequest a) {
+        annonceService.updateAnnonce(a.getIdAnnonce());
+    }
+
+
+
 }
 

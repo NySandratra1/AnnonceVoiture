@@ -49,13 +49,8 @@ public class AnnonceService {
         annonceRepository.save(an);
     }
 
-    public void updateAnnonce(int id, int etat){
-        Annonce existannonce=annonceRepository.findById(id).orElse(null);
-        if(existannonce !=null)
-        {
-            existannonce.setEtatAnnonce(etat);
-            
-        }
+    public void updateAnnonce(int id){
+        annonceRepository.updateEtatAnnonceByIdAnnonce(id);
     }
 
     public List<Annonce> getListeAnnoncesUser(){
