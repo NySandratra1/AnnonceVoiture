@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class Test {
     @GetMapping
     public ResponseEntity<String> sayHello() {
+        System.out.println("haha");
         return ResponseEntity.ok("Here is your resource");
     }
 }

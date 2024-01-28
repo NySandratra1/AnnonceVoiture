@@ -1,27 +1,24 @@
-package mg.valian.tsiaro.springbootdemo.controller;
+package mg.valian.tsiaro.springbootdemo.controller.login;
 
-import mg.valian.tsiaro.springbootdemo.data.entity.Annonce;
+
 import mg.valian.tsiaro.springbootdemo.data.entity.Voiture;
 import mg.valian.tsiaro.springbootdemo.data.request.VoitureRequest;
 import mg.valian.tsiaro.springbootdemo.service.AnnonceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+
 
 
 @RestController
-@RequestMapping("/annonce")
+@RequestMapping("/annonce-login")
 @CrossOrigin
-public class AnnonceController {
+public class InsertAnnonce {
 
     @Autowired
     AnnonceService annonceService;
 
-    @GetMapping("/annonce")
-    public List<Annonce> getgetAllAnnonce() {
-        return annonceService.getAllAnnonce();
-    }
 
+    
     @PostMapping("/annonce")
     public void insertAnnonce(@RequestBody VoitureRequest voiture) {
         Voiture v = new Voiture();
@@ -30,6 +27,10 @@ public class AnnonceController {
         v.setIdMarque(voiture.getIdMarque());
         v.setIdMoteur(voiture.getIdMarque());
         v.setIdVitesse(voiture.getIdVitesse());
+        v.setPrix(voiture.getPrix());
+        v.setKilometrage(voiture.getKilometrage());
+        System.out.println("huhu");
         annonceService.insertAnnonce(v);
     }
 }
+

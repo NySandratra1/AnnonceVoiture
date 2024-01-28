@@ -29,6 +29,7 @@ public class SecurityConfig {
     
     @Autowired
     private UserService userService;
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)

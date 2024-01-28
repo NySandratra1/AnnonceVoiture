@@ -1,4 +1,6 @@
 package mg.valian.tsiaro.springbootdemo.data.entity;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,17 +15,20 @@ public class Voiture {
     @Column( nullable = false, unique = true)
     private int idVoiture;
 
+    @Autowired
     @ManyToOne
-    @JoinColumn(name="idMarque_Marque")
-    private Marque marque;
+    @JoinColumn(name="idMarque")
+    private Marque marque = new Marque();
 
+    @Autowired
     @ManyToOne
-    @JoinColumn(name="idEtat_Etat")
-    private Etat etat;
+    @JoinColumn(name="idEtat")
+    private Etat etat = new Etat();
 
+    @Autowired
     @ManyToOne
-    @JoinColumn(name="idCategorie_Categorie")
-    private Categorie categorie;
+    @JoinColumn(name="idCategorie")
+    private Categorie categorie = new Categorie();
 
     @Column
     private double prix;
@@ -31,13 +36,15 @@ public class Voiture {
     @Column
     private double kilometrage;
 
+    @Autowired
     @ManyToOne
-    @JoinColumn(name="idVitesse_Vitesse")
-    private Vitesse vitesse;
+    @JoinColumn(name="idVitesse")
+    private Vitesse vitesse = new Vitesse();
 
+    @Autowired
     @ManyToOne
-    @JoinColumn(name="idMoteur_Moteur")
-    private Moteur moteur;
+    @JoinColumn(name="idMoteur")
+    private Moteur moteur = new Moteur();
 
 
     public int getIdVitesse(){

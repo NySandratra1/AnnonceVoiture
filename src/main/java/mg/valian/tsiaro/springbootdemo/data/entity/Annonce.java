@@ -29,4 +29,8 @@ public class Annonce {
     @Column
     private int EtatAnnonce;
 
+    @PrePersist
+    protected void onCreate() {
+        dateAnnonce = new Date(System.currentTimeMillis());
+    }
 }
