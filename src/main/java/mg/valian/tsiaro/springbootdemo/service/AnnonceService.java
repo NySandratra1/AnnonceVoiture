@@ -58,6 +58,10 @@ public class AnnonceService {
         }
     }
 
+    public List<Annonce> getListeAnnoncesUser(){
+        return annonceRepository.findByUser(getCurrentUser());
+    }
+
     private Utilisateur getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (Utilisateur) authentication.getPrincipal();

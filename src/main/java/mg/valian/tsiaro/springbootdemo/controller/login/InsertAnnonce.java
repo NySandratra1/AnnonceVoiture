@@ -1,9 +1,13 @@
 package mg.valian.tsiaro.springbootdemo.controller.login;
 
 
+import mg.valian.tsiaro.springbootdemo.data.entity.Annonce;
 import mg.valian.tsiaro.springbootdemo.data.entity.Voiture;
 import mg.valian.tsiaro.springbootdemo.data.request.VoitureRequest;
 import mg.valian.tsiaro.springbootdemo.service.AnnonceService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +22,7 @@ public class InsertAnnonce {
     AnnonceService annonceService;
 
 
-    
+
     @PostMapping("/annonce")
     public void insertAnnonce(@RequestBody VoitureRequest voiture) {
         Voiture v = new Voiture();
@@ -31,6 +35,11 @@ public class InsertAnnonce {
         v.setKilometrage(voiture.getKilometrage());
         System.out.println("huhu");
         annonceService.insertAnnonce(v);
+    }
+
+    @GetMapping("annonce")
+    public List<Annonce> getAnnonceUser() {
+        return annonceService.getListeAnnoncesUser();
     }
 }
 
