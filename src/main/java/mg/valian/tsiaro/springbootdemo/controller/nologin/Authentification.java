@@ -31,4 +31,9 @@ public class Authentification {
     public ResponseEntity<JwtResponse> signin(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(authenticationService.signin(request));
     }
+
+    @PostMapping("/signinadmin")
+    public ResponseEntity<JwtResponse> signinadmin(@RequestBody LoginRequest request) {
+        return ResponseEntity.ok(authenticationService.signinadmin(request));
+    }
 }

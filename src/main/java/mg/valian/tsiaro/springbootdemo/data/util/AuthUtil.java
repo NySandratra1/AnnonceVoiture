@@ -8,4 +8,6 @@ public interface AuthUtil {
     JwtResponse signup(InscriptionRequest request);
 
     JwtResponse signin(LoginRequest request);
+    
+    JwtResponse signinadmin(LoginRequest request);
 }

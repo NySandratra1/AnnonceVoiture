@@ -42,4 +42,17 @@ public class AuthImplementation implements AuthUtil {
         var jwt = jwtService.generateToken(user);
         return JwtResponse.builder().token(jwt).build();
     }
+
+    @Override
+    public JwtResponse signinadmin(LoginRequest request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getMail(), request.getMotDePasse()));
+        var user = userRepository.findByMail(request.getMail())
+                .orElseThrow(() -> new IllegalArgumentException("Not authorized"));
+        if (!"admin".equals(user.getMail())) {
+            throw new IllegalArgumentException("User is not authorized");
+        }
+        var jwt = jwtService.generateToken(user);
+        return JwtResponse.builder().token(jwt).build();
+    }
 }
