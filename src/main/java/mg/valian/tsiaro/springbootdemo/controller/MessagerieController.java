@@ -13,18 +13,6 @@ import java.util.List;
 @CrossOrigin
 public class MessagerieController {
 
-    @Autowired
-    MessagerieService messagerieService;
-
-    @GetMapping("/messagerie")
-    public List<Messagerie> getAllMessagerie(int e,int r) {
-        return messagerieService.getAllMessagerie(e,r);
-    }
-
-    @PostMapping("/messagerie")
-    public void insertMessagerie(@RequestBody Messagerie mq) {
-        messagerieService.insertMessagerie(mq);
-    }
 }
 
 

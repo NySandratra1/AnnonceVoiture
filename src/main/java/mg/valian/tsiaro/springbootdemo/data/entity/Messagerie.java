@@ -3,30 +3,28 @@ package mg.valian.tsiaro.springbootdemo.data.entity;
 import jakarta.persistence.*;
 import java.sql.Date;
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import java.sql.Timestamp;
 
-@Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
+@Document(collection = "messagerie")
 public class Messagerie {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true)
-    private int idMessagerie;
+    @Field("_id")
+    private String idMessagerie;
 
-    @ManyToOne
-    @JoinColumn(name = "envoyeur_id_user")
-    private Utilisateur envoyeur;
+    @Field("id_envoyeur")
+    private int envoyeur;
 
-    @ManyToOne
-    @JoinColumn(name = "recepteur_id_user")
-    private Utilisateur recepteur;
+    @Field("id_recepteur")
+    private int recepteur;
+    
+    @Field("date_Message")
+    private Timestamp dateMessage;
 
-    @Column
-    private Date dateMessage;
-
-    @Column
+    @Field("message")
     private String message;
 
 

@@ -3,6 +3,8 @@ package mg.valian.tsiaro.springbootdemo.controller;
 import mg.valian.tsiaro.springbootdemo.data.entity.AnnonceFav;
 import mg.valian.tsiaro.springbootdemo.service.AnnonceFavService;
 import org.springframework.beans.factory.annotation.Autowired;
+import mg.valian.tsiaro.springbootdemo.data.request.AnnonceRequest;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,16 +15,5 @@ import java.util.List;
 @CrossOrigin
 public class AnnonceFavController {
 
-    @Autowired
-    AnnonceFavService annoncefavService;
-
-    @GetMapping("/annoncefav")
-    public List<AnnonceFav> getAllAnnonceFav() {
-        return annoncefavService.getAllAnnonceFav();
-    }
-
-    @PostMapping("/annoncefav")
-    public void insertAnnonceFav(@RequestBody AnnonceFav annoncefav) {
-        annoncefavService.insertAnnonceFav(annoncefav);
-    }
+    
 }

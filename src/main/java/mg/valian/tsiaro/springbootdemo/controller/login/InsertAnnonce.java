@@ -1,11 +1,12 @@
 package mg.valian.tsiaro.springbootdemo.controller.login;
 
-
 import mg.valian.tsiaro.springbootdemo.data.entity.Annonce;
+import mg.valian.tsiaro.springbootdemo.data.entity.AnnonceFav;
 import mg.valian.tsiaro.springbootdemo.data.entity.Voiture;
 import mg.valian.tsiaro.springbootdemo.data.request.AnnonceRequest;
 import mg.valian.tsiaro.springbootdemo.data.request.VoitureRequest;
 import mg.valian.tsiaro.springbootdemo.service.AnnonceService;
+import mg.valian.tsiaro.springbootdemo.service.AnnonceFavService;
 
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class InsertAnnonce {
 
     @Autowired
     AnnonceService annonceService;
+    @Autowired
+    AnnonceFavService annoncefavService;
 
 
 
@@ -44,7 +47,7 @@ public class InsertAnnonce {
     }
 
 
-    @GetMapping("/annoncefav")
+    @GetMapping("/annoncefavuser")
     public List<Annonce> getAnnonceFavUser() {
         return annonceService.getAllAnnonceFav();
     }
@@ -52,5 +55,19 @@ public class InsertAnnonce {
     @PutMapping("/annonce")
     public void updateEtatAnnonce(@RequestBody AnnonceRequest a) {
         annonceService.updateAnnonce(a.getIdAnnonce());
+    }
+
+    
+    @GetMapping("/annoncefav")
+    public List<AnnonceFav> getAllAnnonceFav() {
+        return annoncefavService.getAllAnnonceFav();
+    }
+
+    @PostMapping("/annoncefav")
+    public void insertAnnonceFav(@RequestBody AnnonceRequest annonce) {
+        AnnonceFav n = new AnnonceFav();
+
+        n.setIdAnnonce(annonce.getIdAnnonce());
+        annoncefavService.insertFavorie(n);
     }
 }
