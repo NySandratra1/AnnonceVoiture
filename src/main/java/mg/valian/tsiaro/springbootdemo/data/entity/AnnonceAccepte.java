@@ -23,6 +23,13 @@ public class AnnonceAccepte {
 
     @ManyToOne
     @JoinColumn(name = "idAnnonce")
-    private Annonce annonce;
-    
+    private Annonce annonce = new Annonce();
+
+    public void setIdAnnonce(int idAnnonce){
+        this.getAnnonce().setIdAnnonce(idAnnonce);
+    }
+
+    public int getIdAnnonce(){
+        return this.getAnnonce().getIdAnnonce();
+    }
 }

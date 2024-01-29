@@ -42,13 +42,15 @@ public class InsertAnnonce {
     public List<Annonce> getAnnonceUser() {
         return annonceService.getListeAnnoncesUser();
     }
+
+
+    @GetMapping("/annoncefav")
+    public List<Annonce> getAnnonceFavUser() {
+        return annonceService.getAllAnnonceFav();
+    }
     
     @PutMapping("/annonce")
     public void updateEtatAnnonce(@RequestBody AnnonceRequest a) {
         annonceService.updateAnnonce(a.getIdAnnonce());
     }
-
-
-
 }
-

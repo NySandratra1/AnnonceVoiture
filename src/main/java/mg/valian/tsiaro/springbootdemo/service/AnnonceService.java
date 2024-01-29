@@ -49,6 +49,19 @@ public class AnnonceService {
         annonceRepository.save(an);
     }
 
+    public List<Annonce> getAllAnnonceNonAccepte(){
+        return annonceRepository.findAllNotInAnnonceAccepte();      
+    }
+
+
+    public List<Annonce> getAllAnnonceFav(){
+        return annonceRepository.findAllInAnnonceFav();      
+    }
+    
+    public List<Annonce> getAllAnnonceAccepte(){
+        return annonceRepository.findAllInAnnonceAccepte();      
+    }
+
     public void updateAnnonce(int id){
         annonceRepository.updateEtatAnnonceByIdAnnonce(id);
     }

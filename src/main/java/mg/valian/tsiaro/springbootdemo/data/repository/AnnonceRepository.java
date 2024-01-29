@@ -18,6 +18,15 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Integer> {
     @Modifying
     @Query("UPDATE Annonce a SET a.EtatAnnonce = 1 WHERE a.idAnnonce = :idAnnonce")
     void updateEtatAnnonceByIdAnnonce(int idAnnonce);
-    
+
+    @Query("SELECT a FROM Annonce a WHERE a NOT IN (SELECT aa.annonce FROM AnnonceAccepte aa)")
+    List<Annonce> findAllNotInAnnonceAccepte();
+
+    @Query("SELECT a FROM Annonce a WHERE a IN (SELECT aa.annonce FROM AnnonceAccepte aa)")
+    List<Annonce> findAllInAnnonceAccepte();
+
+    @Query("SELECT a FROM Annonce a WHERE a IN (SELECT aa.annonce FROM AnnonceFav aa)")
+    List<Annonce> findAllInAnnonceFav();
+
     List<Annonce> findByUser(Utilisateur utilisateur);
 }

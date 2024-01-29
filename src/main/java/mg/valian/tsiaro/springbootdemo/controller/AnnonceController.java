@@ -18,7 +18,7 @@ public class AnnonceController {
     AnnonceService annonceService;
 
     @GetMapping("/annonce")
-    public List<Annonce> getgetAllAnnonce() {
+    public List<Annonce> getAllAnnonce() {
         return annonceService.getAllAnnonce();
     }
 
@@ -31,5 +31,15 @@ public class AnnonceController {
         v.setIdMoteur(voiture.getIdMarque());
         v.setIdVitesse(voiture.getIdVitesse());
         annonceService.insertAnnonce(v);
+    }
+
+    @GetMapping("/annonceadmin")
+    public List<Annonce> getAllAnnonceNonAccepte() {
+        return annonceService.getAllAnnonceNonAccepte();
+    }
+
+    @GetMapping("/annonceall")
+    public List<Annonce> getAllAnnonceAccepte() {
+        return annonceService.getAllAnnonceAccepte();
     }
 }
