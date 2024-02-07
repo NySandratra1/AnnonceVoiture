@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/annonce-login")
-@CrossOrigin
+@CrossOrigin("*")
 public class InsertAnnonce {
 
     @Autowired
@@ -30,6 +30,7 @@ public class InsertAnnonce {
 
 
     @PostMapping("/annonce")
+    @CrossOrigin("*")
     public void insertAnnonce(@RequestBody VoitureRequest voiture) {
         Voiture v = new Voiture();
         v.setIdCategorie(voiture.getIdCategorie());
@@ -44,28 +45,37 @@ public class InsertAnnonce {
     }
 
     @GetMapping("/annonce")
+    @CrossOrigin("*")
     public List<Annonce> getAnnonceUser() {
         return annonceService.getListeAnnoncesUser();
     }
 
 
     @GetMapping("/annoncefavuser")
+    @CrossOrigin("*")
+
     public List<Annonce> getAnnonceFavUser() {
         return annonceService.getAllAnnonceFav();
     }
     
     @PutMapping("/annonce")
+    @CrossOrigin("*")
+
     public void updateEtatAnnonce(@RequestBody AnnonceRequest a) {
         annonceService.updateAnnonce(a.getIdAnnonce());
     }
 
     
     @GetMapping("/annoncefav")
+    @CrossOrigin("*")
+
     public List<AnnonceFav> getAllAnnonceFav() {
         return annoncefavService.getAllAnnonceFav();
     }
 
     @PostMapping("/annoncefav")
+    @CrossOrigin("*")
+
     public void insertAnnonceFav(@RequestBody AnnonceRequest annonce) {
         AnnonceFav n = new AnnonceFav();
 
@@ -74,6 +84,8 @@ public class InsertAnnonce {
     }
 
     @GetMapping("/utilisateur")
+    @CrossOrigin("*")
+
     public Utilisateur getCurrentUser(){
         return annonceService.getCurrentUser();                      
     }
