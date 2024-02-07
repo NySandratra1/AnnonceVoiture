@@ -85,7 +85,6 @@ public class InsertAnnonce {
 
     @GetMapping("/utilisateur")
     @CrossOrigin("*")
-
     public Utilisateur getCurrentUser(){
         return annonceService.getCurrentUser();                      
     }
