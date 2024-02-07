@@ -3,6 +3,4 @@ psql -h monorail.proxy.rlwy.net -d railway -p 23343 -U postgres
 
 dF*63aB3BCf212fccfe*cC4EcA4g1B5A
 
-
-
 test

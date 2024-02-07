@@ -25,6 +25,7 @@ public class UtilisateurController {
     public void insertUser(@RequestBody Utilisateur mq) {
        userService.insertUser(mq);
     }
+    
 }
 
 

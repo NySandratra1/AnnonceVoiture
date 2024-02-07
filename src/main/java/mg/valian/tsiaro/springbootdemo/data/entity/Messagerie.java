@@ -26,6 +26,4 @@ public class Messagerie {
 
     @Field("message")
     private String message;
-
-
 }

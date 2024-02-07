@@ -1,5 +1,6 @@
 package mg.valian.tsiaro.springbootdemo.controller.login;
 
+import mg.valian.tsiaro.springbootdemo.controller.UtilisateurController;
 import mg.valian.tsiaro.springbootdemo.data.entity.Annonce;
 import mg.valian.tsiaro.springbootdemo.data.entity.AnnonceFav;
 import mg.valian.tsiaro.springbootdemo.data.entity.Voiture;
@@ -69,5 +70,10 @@ public class InsertAnnonce {
 
         n.setIdAnnonce(annonce.getIdAnnonce());
         annoncefavService.insertFavorie(n);
+    }
+
+    @GetMapping("/utilisateur")
+    public Utilisateur getCurrentUser(){
+        return annonceService.getCurrentUser();                      
     }
 }

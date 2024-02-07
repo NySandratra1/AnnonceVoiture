@@ -70,7 +70,7 @@ public class AnnonceService {
         return annonceRepository.findByUser(getCurrentUser());
     }
 
-    private Utilisateur getCurrentUser() {
+    public Utilisateur getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (Utilisateur) authentication.getPrincipal();
     }
