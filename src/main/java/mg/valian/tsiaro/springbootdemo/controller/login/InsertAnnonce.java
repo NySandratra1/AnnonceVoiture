@@ -62,24 +62,20 @@ public class InsertAnnonce {
 
     
     @GetMapping("/annoncefav")
-    @CrossOrigin("*")
 
     public List<AnnonceFav> getAllAnnonceFav() {
         return annoncefavService.getAllAnnonceFav();
     }
 
     @PostMapping("/annoncefav")
-    @CrossOrigin("*")
 
     public void insertAnnonceFav(@RequestBody AnnonceRequest annonce) {
         AnnonceFav n = new AnnonceFav();
-
         n.setIdAnnonce(annonce.getIdAnnonce());
         annoncefavService.insertFavorie(n);
     }
 
     @GetMapping("/utilisateur")
-    @CrossOrigin("*")
     public Utilisateur getCurrentUser(){
         return annonceService.getCurrentUser();                      
     }
