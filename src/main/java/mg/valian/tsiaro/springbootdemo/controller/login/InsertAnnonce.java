@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/annonce-login")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "*", methods = "*")
 public class InsertAnnonce {
 
     @Autowired
@@ -40,7 +40,6 @@ public class InsertAnnonce {
         v.setIdVitesse(voiture.getIdVitesse());
         v.setPrix(voiture.getPrix());
         v.setKilometrage(voiture.getKilometrage());
-        System.out.println("huhu");
         annonceService.insertAnnonce(v);
     }
 
