@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/annonce-login")
-@CrossOrigin(origins = "*", methods = "*")
+@CrossOrigin
 public class InsertAnnonce {
 
     @Autowired
@@ -30,7 +30,7 @@ public class InsertAnnonce {
 
 
     @PostMapping("/annonce")
-
+    
     public void insertAnnonce(@RequestBody VoitureRequest voiture) {
         Voiture v = new Voiture();
         v.setIdCategorie(voiture.getIdCategorie());

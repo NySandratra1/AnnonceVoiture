@@ -18,11 +18,11 @@ public class AnnonceFav {
 
     @ManyToOne
     @JoinColumn(name="idUser_User")
-    private Utilisateur user;
+    private Utilisateur user = new Utilisateur();
 
     @ManyToOne
     @JoinColumn(name="idAnnonce_Annonce")
-    private Annonce annonce;
+    private Annonce annonce = new Annonce();
 
     public Integer getIdUser() {
         return user != null ? user.getIdUser() : null;
