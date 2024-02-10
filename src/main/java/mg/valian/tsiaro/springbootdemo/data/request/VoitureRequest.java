@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 public class VoitureRequest {
     String kilometrage ;
     String prix ;
-    String idCategorie; 
-    String idEtat; 
-    String idMarque; 
-    String idMoteur ;
-    String idVitesse;
-    String photoUrl;
+    int idCategorie; 
+    int idEtat; 
+    int idMarque; 
+    int idMoteur ;
+    int idVitesse;
+    int photoUrl;
 }
