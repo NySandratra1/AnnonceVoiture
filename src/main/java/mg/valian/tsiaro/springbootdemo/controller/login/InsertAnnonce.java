@@ -8,12 +8,16 @@ import mg.valian.tsiaro.springbootdemo.data.entity.Utilisateur;
 import mg.valian.tsiaro.springbootdemo.data.request.AnnonceRequest;
 import mg.valian.tsiaro.springbootdemo.data.request.VoitureRequest;
 import mg.valian.tsiaro.springbootdemo.service.AnnonceService;
+import mg.valian.tsiaro.springbootdemo.service.ImageService;
 import mg.valian.tsiaro.springbootdemo.service.AnnonceFavService;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
@@ -26,21 +30,41 @@ public class InsertAnnonce {
     AnnonceService annonceService;
     @Autowired
     AnnonceFavService annoncefavService;
-
+    @Autowired
+    ImageService imageService;
 
 
     @PostMapping("/annonce")
     
-    public void insertAnnonce(@RequestBody VoitureRequest voiture) {
-        Voiture v = new Voiture();
-        v.setIdCategorie((voiture.getIdCategorie()));
-        v.setIdEtat((voiture.getIdEtat()));
-        v.setIdMarque((voiture.getIdMarque()));
-        v.setIdMoteur((voiture.getIdMoteur()));
-        v.setIdVitesse((voiture.getIdVitesse()));
-        v.setPrix(Double.valueOf(voiture.getPrix()));
-        v.setKilometrage(Double.valueOf(voiture.getKilometrage()));
-        annonceService.insertAnnonce(v,voiture.getPhotoUrl());
+    public String insertAnnonce(@RequestParam("file") MultipartFile file,@RequestParam("voiture") String voiture) {
+        String photoUrl = "";
+        try{
+            Voiture v = new Voiture();
+
+            ObjectMapper mapper = new ObjectMapper();
+            VoitureRequest voitu =  mapper.readValue(voiture, VoitureRequest.class);
+
+            v.setIdCategorie(voitu.getIdCategorie());
+            v.setIdEtat(voitu.getIdEtat());
+            v.setIdMarque(voitu.getIdMarque());
+            v.setIdMoteur(voitu.getIdMoteur());
+            v.setIdVitesse(voitu.getIdVitesse());
+            v.setPrix(Double.valueOf(voitu.getPrix()));
+            v.setKilometrage(Double.valueOf(voitu.getKilometrage()));
+
+            
+            photoUrl = imageService.upload(file);
+            
+
+            annonceService.insertAnnonce(v, photoUrl);
+            
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return photoUrl;
+            
     }
 
     @GetMapping("/annonce")

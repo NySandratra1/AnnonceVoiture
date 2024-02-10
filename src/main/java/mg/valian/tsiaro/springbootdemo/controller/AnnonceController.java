@@ -31,7 +31,7 @@ public class AnnonceController {
         v.setIdMoteur(voiture.getIdMoteur());
         v.setIdVitesse(voiture.getIdVitesse());
         
-        annonceService.insertAnnonce(v,voiture.getPhotoUrl());
+        annonceService.insertAnnonce(v,"test.jpg");
     }
 
     @GetMapping("/annonceadmin")
