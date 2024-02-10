@@ -1,11 +1,9 @@
 package mg.valian.tsiaro.springbootdemo.service;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -24,33 +22,26 @@ import io.jsonwebtoken.io.IOException;
 @Service
 public class ImageService {
 
-    public String uploadFile(File file, String fileName) throws IOException, FileNotFoundException, java.io.IOException {
-    BlobId blobId = BlobId.of("kinaka-a4d8e.appspot.com", "image/" + fileName); // Replace with your bucket name
-    BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
-    try (InputStream inputStream = new FileInputStream(file)) {
+    private String uploadFile(File file, String fileName) throws IOException, java.io.IOException {
+        BlobId blobId = BlobId.of("kinaka-a4d8e.appspot.com", "image/" + fileName); // Replace with your bucker name
+        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
+        InputStream inputStream = ImageService.class.getClassLoader().getResourceAsStream("kinaka-a4d8e-firebase-adminsdk-gkozu-8279536f84.json"); // change the file name with your one
         Credentials credentials = GoogleCredentials.fromStream(inputStream);
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
-        storage.create(blobInfo, inputStream);
+        storage.create(blobInfo, Files.readAllBytes(file.toPath()));
+  
+        String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/kinaka-a4d8e.appspot.com/o/%s?alt=media";
+        return String.format(DOWNLOAD_URL, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
     }
   
-    String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/kinaka-a4d8e.appspot.com/o/%s?alt=media";
-    return String.format(DOWNLOAD_URL, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
-}
-  
-    public File convertToFile(MultipartFile multipartFile, String fileName) throws IOException, FileNotFoundException, java.io.IOException {
-    File tempFile = new File(fileName);
-    try (OutputStream outputStream = new FileOutputStream(tempFile);
-         InputStream inputStream = multipartFile.getInputStream()) {
-        byte[] buffer = new byte[8192]; // 8KB buffer size
-        int bytesRead;
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesRead);
+    private File convertToFile(MultipartFile multipartFile, String fileName) throws IOException, java.io.IOException {
+        File tempFile = new File(fileName);
+        try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+            fos.write(multipartFile.getBytes());
+            fos.close();
         }
-    } catch (IOException e) {
-        throw e; // Rethrow the exception
+        return tempFile;
     }
-    return tempFile;
-}
   
     private String getExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf("."));
