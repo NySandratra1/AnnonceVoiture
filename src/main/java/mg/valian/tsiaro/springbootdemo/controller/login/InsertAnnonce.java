@@ -36,33 +36,26 @@ public class InsertAnnonce {
 
     @PostMapping("/annonce")
     
-    public String insertAnnonce(@RequestParam("file") MultipartFile file,@RequestParam("voiture") String voiture) {
-        String photoUrl = "";
-        try{
+    public void insertAnnonce(@RequestParam VoitureRequest voiture) {
+        
+        
             Voiture v = new Voiture();
 
-            ObjectMapper mapper = new ObjectMapper();
-            VoitureRequest voitu =  mapper.readValue(voiture, VoitureRequest.class);
-
-            v.setIdCategorie(voitu.getIdCategorie());
-            v.setIdEtat(voitu.getIdEtat());
-            v.setIdMarque(voitu.getIdMarque());
-            v.setIdMoteur(voitu.getIdMoteur());
-            v.setIdVitesse(voitu.getIdVitesse());
-            v.setPrix(Double.valueOf(voitu.getPrix()));
-            v.setKilometrage(Double.valueOf(voitu.getKilometrage()));
+            v.setIdCategorie(voiture.getIdCategorie());
+            v.setIdEtat(voiture.getIdEtat());
+            v.setIdMarque(voiture.getIdMarque());
+            v.setIdMoteur(voiture.getIdMoteur());
+            v.setIdVitesse(voiture.getIdVitesse());
+            v.setPrix(Double.valueOf(voiture.getPrix()));
+            v.setKilometrage(Double.valueOf(voiture.getKilometrage()));
             
-            photoUrl = imageService.upload(file);
+            
             
 
-            annonceService.insertAnnonce(v, photoUrl);
+            annonceService.insertAnnonce(v, voiture.getPhotoUrl());
             
 
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        return photoUrl;
+        
             
     }
 
