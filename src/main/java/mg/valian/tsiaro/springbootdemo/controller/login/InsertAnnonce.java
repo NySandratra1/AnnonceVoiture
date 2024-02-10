@@ -36,7 +36,7 @@ public class InsertAnnonce {
 
     @PostMapping("/annonce")
     
-    public void insertAnnonce(@RequestParam VoitureRequest voiture) {
+    public void insertAnnonce(@RequestBody VoitureRequest voiture) {
         
         
             Voiture v = new Voiture();
