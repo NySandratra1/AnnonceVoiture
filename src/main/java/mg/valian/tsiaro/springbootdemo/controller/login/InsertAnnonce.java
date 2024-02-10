@@ -49,8 +49,6 @@ public class InsertAnnonce {
             v.setPrix(Double.valueOf(voiture.getPrix()));
             v.setKilometrage(Double.valueOf(voiture.getKilometrage()));
             
-            
-            
 
             annonceService.insertAnnonce(v, voiture.getPhotoUrl());
             
