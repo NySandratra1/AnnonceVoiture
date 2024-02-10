@@ -36,11 +36,11 @@ public class InsertAnnonce {
         v.setIdCategorie(voiture.getIdCategorie());
         v.setIdEtat(voiture.getIdEtat());
         v.setIdMarque(voiture.getIdMarque());
-        v.setIdMoteur(voiture.getIdMarque());
+        v.setIdMoteur(voiture.getIdMoteur());
         v.setIdVitesse(voiture.getIdVitesse());
         v.setPrix(voiture.getPrix());
         v.setKilometrage(voiture.getKilometrage());
-        annonceService.insertAnnonce(v);
+        annonceService.insertAnnonce(v,voiture.getPhotoUrl());
     }
 
     @GetMapping("/annonce")

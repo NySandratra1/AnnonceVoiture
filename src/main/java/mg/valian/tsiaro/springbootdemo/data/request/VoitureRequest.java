@@ -18,4 +18,5 @@ public class VoitureRequest {
     int idMarque; 
     int idMoteur ;
     int idVitesse;
+    String photoUrl;
 }

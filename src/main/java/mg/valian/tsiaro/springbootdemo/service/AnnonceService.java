@@ -38,7 +38,7 @@ public class AnnonceService {
         return annonceRepository.findById(id);
     }
 
-    public void insertAnnonce(Voiture voiture) {
+    public void insertAnnonce(Voiture voiture,String url) {
         Voiture savedVoiture = voitureRepository.save(voiture);
         Annonce an = new Annonce();
         an.setDateAnnonce(Date.valueOf(LocalDate.now()));
@@ -46,6 +46,7 @@ public class AnnonceService {
         an.setUser(user);
         an.setVoiture(savedVoiture);
         an.setEtatAnnonce(0);
+        an.setPhotoUrl(url);
         annonceRepository.save(an);
     }
 

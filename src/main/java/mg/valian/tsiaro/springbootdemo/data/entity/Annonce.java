@@ -17,17 +17,20 @@ public class Annonce {
 
     @ManyToOne
     @JoinColumn(name = "idVoiture")
-    private Voiture voiture; // Assuming you have a Voiture entity
+    private Voiture voiture; 
 
     @Column
     private Date dateAnnonce;
 
     @ManyToOne
     @JoinColumn(name = "idUser")
-    private Utilisateur user; // Assuming you have a User entity
+    private Utilisateur user; 
 
     @Column
     private int EtatAnnonce;
+
+    @Column(name = "photo_url")
+    private String photoUrl;
 
     @PrePersist
     protected void onCreate() {
