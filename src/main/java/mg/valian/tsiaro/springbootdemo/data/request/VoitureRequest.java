@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VoitureRequest {
-    double kilometrage ;
-    double prix ;
-    int idCategorie; 
-    int idEtat; 
-    int idMarque; 
-    int idMoteur ;
-    int idVitesse;
+    String kilometrage ;
+    String prix ;
+    String idCategorie; 
+    String idEtat; 
+    String idMarque; 
+    String idMoteur ;
+    String idVitesse;
     String photoUrl;
 }
