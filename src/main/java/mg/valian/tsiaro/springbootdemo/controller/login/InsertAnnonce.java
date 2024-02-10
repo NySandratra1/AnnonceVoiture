@@ -51,7 +51,6 @@ public class InsertAnnonce {
             v.setIdVitesse(voitu.getIdVitesse());
             v.setPrix(Double.valueOf(voitu.getPrix()));
             v.setKilometrage(Double.valueOf(voitu.getKilometrage()));
-
             
             photoUrl = imageService.upload(file);
             
